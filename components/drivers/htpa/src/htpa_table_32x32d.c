@@ -1,6 +1,7 @@
 
 #include "htpa.h"
 
+// HTPA32x32dR1L5_0HiGeF7_7_Gain3k3
 const unsigned int table_temp [HTPA_NROF_AD_ELEMENTS][HTPA_NROF_TA_ELEMENTS]={
 {	0x0000,	0x0000,	483,	1384,	1759,	2037,	2269	},
 {	0x0000,	0x0000,	1183,	1621,	1920,	2162,	2372	},
