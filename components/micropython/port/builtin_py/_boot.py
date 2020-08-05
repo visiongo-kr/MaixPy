@@ -12,9 +12,9 @@ else:
     os.chdir("/flash")
 sys.path.append('/flash')
 
-print("[MaixPy] init end") # for IDE
+print("[info] init end") # for IDE
 for i in range(200):
-    time.sleep_ms(1) # wait for key interrupt(for maixpy ide)
+    time.sleep_ms(1) # wait for key interrupt
 del i
 
 # check IDE mode
@@ -76,10 +76,7 @@ test_pin=16
 fm.fpioa.set_function(test_pin,FPIOA.GPIO7)
 test_gpio=GPIO(GPIO.GPIO7,GPIO.PULL_UP)
 lcd.init(color=(255,0,0))
-lcd.draw_string(lcd.width()//2-68,lcd.height()//2-24, "Welcome to MaixPy", lcd.WHITE, lcd.RED)
-v = sys.implementation.version
-lcd.draw_string(lcd.width()//2-70,lcd.height()//2+12, 'V{}.{}.{} : maixpy.io'.format(v[0],v[1],v[2]), lcd.WHITE, lcd.RED)
-del v
+lcd.draw_string(lcd.width()//2-68,lcd.height()//2-24, "Loading", lcd.WHITE, lcd.RED)
 if test_gpio.value() == 0:
     print('PIN 16 pulled down, enter test mode')
     lcd.clear(lcd.PINK)
@@ -108,51 +105,37 @@ try:
     sd_ls = os.listdir("/sd")
 except Exception:
     sd_ls = []
-if "cover.boot.py" in sd_ls:
-    code0 = ""
-    if "boot.py" in flash_ls:
-        with open("/flash/boot.py") as f:
-            code0 = f.read()
-    with open("/sd/cover.boot.py") as f:
-        code=f.read()
-    if code0 != code:
-        with open("/flash/boot.py", "w") as f:
-            f.write(code)
-        import machine
-        machine.reset()
 
-if "cover.main.py" in sd_ls:
-    code0 = ""
-    if "main.py" in flash_ls:
-        with open("/flash/main.py") as f:
-            code0 = f.read()
-    with open("/sd/cover.main.py") as f:
-        code = f.read()
-    if code0 != code:
-        with open("/flash/main.py", "w") as f:
-            f.write(code)
-        import machine
-        machine.reset()
+# if "cover.boot.py" in sd_ls:
+#     code0 = ""
+#     if "boot.py" in flash_ls:
+#         with open("/flash/boot.py") as f:
+#             code0 = f.read()
+#     with open("/sd/cover.boot.py") as f:
+#         code=f.read()
+#     if code0 != code:
+#         with open("/flash/boot.py", "w") as f:
+#             f.write(code)
+#         import machine
+#         machine.reset()
+
+# if "cover.main.py" in sd_ls:
+#     code0 = ""
+#     if "main.py" in flash_ls:
+#         with open("/flash/main.py") as f:
+#             code0 = f.read()
+#     with open("/sd/cover.main.py") as f:
+#         code = f.read()
+#     if code0 != code:
+#         with open("/flash/main.py", "w") as f:
+#             f.write(code)
+#         import machine
+#         machine.reset()
 
 try:
     del flash_ls
     del sd_ls
-    del code0
-    del code
+    # del code0
+    # del code
 except Exception:
     pass
-
-banner = '''
- __  __              _____  __   __  _____   __     __
-|  \/  |     /\     |_   _| \ \ / / |  __ \  \ \   / /
-| \  / |    /  \      | |    \ V /  | |__) |  \ \_/ /
-| |\/| |   / /\ \     | |     > <   |  ___/    \   /
-| |  | |  / ____ \   _| |_   / . \  | |         | |
-|_|  |_| /_/    \_\ |_____| /_/ \_\ |_|         |_|
-
-Official Site : https://www.sipeed.com
-Wiki          : https://maixpy.sipeed.com
-'''
-print(banner)
-del banner
-
