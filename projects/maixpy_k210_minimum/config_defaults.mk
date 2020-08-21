@@ -43,7 +43,7 @@ CONFIG_SPI_SD_CARD_FORCE_HIGH_SPEED=y
 #
 # HTPA thermal sensor
 #
-# CONFIG_HTPA_ENABLE is not set
+# CONFIG_HTPA_ENABLE=y
 # end of HTPA thermal sensor
 # end of Drivers configuration
 
@@ -67,8 +67,8 @@ CONFIG_MAIXPY_GC_HEAP_SIZE=0x80000
 #
 # Modules configurations
 #
-# CONFIG_MAIXPY_IDE_SUPPORT is not set
-# CONFIG_MAIXPY_THREAD_ENABLE is not set
+CONFIG_MAIXPY_IDE_SUPPORT=y
+# CONFIG_MAIXPY_THREAD_ENABLE=y
 # CONFIG_MAIXPY_NES_ENABLE is not set
 # CONFIG_MAIXPY_VIDEO_ENABLE is not set
 # CONFIG_MAIXPY_TOUCH_SCREEN_ENABLE is not set
